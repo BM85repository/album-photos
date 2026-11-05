@@ -1,0 +1,51 @@
+# Tests automatiques à chaque envoi ; quand le fichier VERSION change, publication d'une nouvelle version
+# (zip prêt à installer) dans l'onglet « Releases ».
+name: Tests et publication
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Bibliothèques
+        run: |
+          sudo apt-get update && sudo apt-get install -y libgl1
+          pip install -r requirements.txt
+      - name: Tests automatiques (photos de synthèse)
+        run: python -W ignore::ResourceWarning tests/lancer_tests.py
+
+  publication:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Nouvelle version ?
+        id: version
+        run: |
+          v="v$(tr -d ' \r\n' < VERSION)"
+          echo "tag=$v" >> "$GITHUB_OUTPUT"
+          if gh release view "$v" >/dev/null 2>&1; then echo "nouvelle=non" >> "$GITHUB_OUTPUT"; else echo "nouvelle=oui" >> "$GITHUB_OUTPUT"; fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Zip et publication
+        if: steps.version.outputs.nouvelle == 'oui'
+        run: |
+          tag="${{ steps.version.outputs.tag }}"
+          mkdir -p paquet/AlbumPhotos
+          git archive HEAD | tar -x -C paquet/AlbumPhotos
+          rm -rf paquet/AlbumPhotos/.github paquet/AlbumPhotos/.gitignore
+          (cd paquet && zip -qr "../AlbumPhotos_${tag}.zip" AlbumPhotos)
+          gh release create "$tag" "AlbumPhotos_${tag}.zip" --title "Album Photos ${tag}" --notes-file NOTES_VERSION.md
+        env:
+          GH_TOKEN: ${{ github.token }}

@@ -1,0 +1,363 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Album Photos guide</title><style>
+body{font-family:"Segoe UI",system-ui,sans-serif;background:#F6F3EE;color:#2F2B28;margin:0;line-height:1.5}
+main{max-width:960px;margin:0 auto;padding:24px 20px 60px;background:#fff;min-height:100vh}
+h1{font-size:24px;border-bottom:3px solid #C8A96A;padding-bottom:8px}h2{color:#7A5C2E;margin-top:32px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th{background:#2F2B28;color:#fff;text-align:left}
+th,td{padding:7px 10px;border:1px solid #E2DBD0;vertical-align:top}tr:nth-child(even) td{background:#FBF9F5}
+code{background:#F1ECE4;padding:1px 5px;border-radius:4px;font-size:13px}
+@media print{body{background:#fff}main{padding:0}}
+</style></head><body><main><h1>Album Photos application guide (English)</h1>
+<p>Version of 01/11/2026. One window gathers every step of the photo book and of the photo-letters poster. Each button does exactly what the <code>.bat</code> file of the same name does; the <code>.bat</code> files still work.</p>
+<p><strong>Safety rule:</strong> the application only <strong>reads</strong> your photos. It never changes, moves or deletes anything on the backup drive. Everything it creates goes into the work folder, for example <code>C:\AlbumsFamille</code>.</p>
+<p><strong>Language:</strong> the <strong>🌐 EN / FR</strong> button at the top right switches the application language. The language of the book itself is set in Settings &gt; Book &gt; "Language of the book and letters poster" (<code>fr</code> or <code>en</code>). Detailed log messages stay in French.</p>
+<h2>1. Install the application (once)</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Python</td>
+<td>If Python is not installed yet: https://www.python.org/downloads/. On the first screen tick <strong>"Add python.exe to PATH"</strong>, then restart the PC.</td>
+</tr>
+<tr>
+<td>2. The tool</td>
+<td>Unzip the zip you received (e.g. in Documents). The tool's author uses their Git copy <code>%USERPROFILE%\AlbumPhotos\outils\albums-famille</code>.</td>
+</tr>
+<tr>
+<td>3. Install</td>
+<td>In that folder, double-click <strong><code>Installer_application.bat</code></strong>. It installs the libraries (a few minutes the first time), creates the <strong>Album Photos</strong> icon on the Desktop and in the Start menu, then opens the application.</td>
+</tr>
+<tr>
+<td>4. Afterwards</td>
+<td>Simply open <strong>Album Photos</strong> from the Desktop.</td>
+</tr>
+</tbody>
+</table>
+<h3>Check the tool (automatic tests)</h3>
+<p>The <strong>🔧 Maintenance</strong> &gt; <strong>Check the tool (tests)</strong> button (or <code>9_tests_automatiques.bat</code>) runs 39 tests in 1 to 3 minutes on a small disk of <strong>synthetic photos</strong> created in a temporary folder: your photos, settings and books are not used. They cover analysis, selection, previews, final book with PowerPoint, letters poster, browser screens (security token), suggestions, translation, settings (multi-line letter, safe writing) and above all that <strong>original photos are never modified</strong>. At the end, "OK" and "Tous les tests sont passés" appear in green; otherwise send <code>journal.txt</code> to Claude.</p>
+<h2>2. The screen</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top bar</td>
+<td>Name of the book's person, folders in use, version. On the right: running step, activity bar, <strong>■ Stop the step</strong> button, <strong>🌐 EN / FR</strong> button.</td>
+</tr>
+<tr>
+<td>Left column</td>
+<td>The step buttons, in order (1 to 5; setup and updates are in <strong>🔧 Maintenance</strong>): <strong>blue ▶ buttons</strong>; <strong>the recommended one is green</strong>. While a step runs, the others are greyed out. Below, the white "Open" buttons open the folders.</td>
+</tr>
+<tr>
+<td><strong>Log</strong> tab</td>
+<td>What the step is doing, live. The green line at the top gives the recommended next step. Errors are in red.</td>
+</tr>
+<tr>
+<td><strong>Settings</strong> tab</td>
+<td>All settings, on three pages: Photos and people, Book, Letters poster. Each setting is in a white box: a bold title, the field to fill in (blue border while typing, ▼ arrow for a list) and grey help text. Green <strong>✔ Save the settings</strong> button at the top (saving is also automatic before each step).</td>
+</tr>
+<tr>
+<td><strong>Help</strong> tab</td>
+<td>This guide.</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Making the book step by step</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Button</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><strong>Settings</strong> tab</td>
+<td>Fill in at least: photo folder ("Browse…"), work folder, person of the book, close relatives, date of birth, "home" countries (FR,PH).</td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>🔧 Maintenance</strong> &gt; <strong>Install / repair</strong></td>
+<td>Checks the libraries and creates one reference photo folder per person.</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Reference photos</strong> (Open)</td>
+<td>Put 3 to 10 sharp photos of each person's face in their folder, at different ages, baby included.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Analyse the drive</strong></td>
+<td>Reads all photos (dates, places, faces, sharpness). Can be stopped and restarted: work already done is kept. Several hours the first time.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Prepare the selection</strong></td>
+<td>Suggests the book photos, grouped into memories.</td>
+</tr>
+<tr>
+<td>3a</td>
+<td><strong>Choose the photos</strong></td>
+<td>The browser opens: one click keeps / removes a photo, 🔍 enlarges it. Filter buttons: <strong>★ Special</strong>, <strong>★ Cover</strong>, <strong>★ Full page</strong>, <strong>✉ Letters</strong>, <strong>◆ Master</strong>, <strong>Set aside</strong>, with their counts. Finish with <strong>Terminer</strong> on the page.</td>
+</tr>
+<tr>
+<td>3b</td>
+<td><strong>Reduce the selection</strong> <em>(optional)</em></td>
+<td>Kept photos only, with the best candidates for removal flagged.</td>
+</tr>
+<tr>
+<td>3c</td>
+<td><strong>Suggest improvements</strong> <em>(optional)</em></td>
+<td>A screen opens: each suggestion (replace, add, remove) with its photos; <strong>one click accepts or refuses it</strong>, "Accept all" / "Refuse all", then <strong>"Apply the choices"</strong> updates the selection (backup copy made). No more Excel. "Review the suggestions" reopens this screen without recomputing.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Style previews</strong></td>
+<td>A window lets you <strong>tick the styles to make or redo</strong>; unticked previews stay as they are. One preview PDF per style in the book folder.</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Settings &gt; Book</td>
+<td>Choose the <strong>style</strong>; if you wish, the number of pages, organisation, language, footer, end text, dedication.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Final book</strong></td>
+<td>The book + the printer folder: PDF, photos numbered in order, Excel instructions, assembly plan.</td>
+</tr>
+<tr>
+<td>5b</td>
+<td><strong>Book + editable PowerPoint</strong> <em>(optional)</em></td>
+<td>Same, plus a <code>.pptx</code> file to retouch a page by hand.</td>
+</tr>
+</tbody>
+</table>
+<h3>Book options (Settings &gt; Book)</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Example</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language of the book</td>
+<td><code>en</code></td>
+<td>Titles, dates, ages, countries, bubbles and fixed pages in English. Hand-typed captions and titles stay as typed.</td>
+</tr>
+<tr>
+<td>Footer</td>
+<td><code>Laura · 2012-2024</code></td>
+<td>Small text at the bottom of the pages, on the outer side.</td>
+</tr>
+<tr>
+<td>Pages with the footer</td>
+<td><code>photos-uniques</code></td>
+<td><code>toutes</code> = every page after the first; <code>photos-uniques</code> = only pages with a single photo.</td>
+</tr>
+<tr>
+<td>Text at the end of the album</td>
+<td>a multi-paragraph letter</td>
+<td>Large text box in the application, saved in <code>texte_fin.txt</code>. Line breaks and paragraphs are kept, the size adapts so everything fits (never cut), a short first line ("My darling,") becomes a heading. A ❤️ becomes a drawn heart.</td>
+</tr>
+<tr>
+<td>Symbol above the end text</td>
+<td><code>coeurs</code></td>
+<td>coeurs, coeur, fleur, ornement, colombe, etoiles or aucun: drawn in the application; click a drawing to choose it.</td>
+</tr>
+<tr>
+<td>Caption box colour (comic styles)</td>
+<td><code>vert</code></td>
+<td>yellow (default), blue, dark blue, green, pink, orange, red, purple… or <code>#RRGGBB</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3>Comic styles: bubbles and caption boxes</h3>
+<p>The bubble ("Happy birthday!") and the caption box go where there is no face, with a smaller font if needed (down to 9 pt). If no free spot exists, there is no bubble. If the photo is reduced (quality), the caption box goes in the free space next to it.</p>
+<h3>Checks shown in the previews only</h3>
+<ul>
+<li>orange label: photo reduced to stay sharp when printed;</li>
+<li>red label: a face is already cut off in the original photo (no crop can fix it: replace the photo if possible).
+Both are listed on the last page of the preview.</li>
+</ul>
+<h3>Improving face recognition</h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Photos kept <strong>without the person</strong></td>
+<td><strong>Check the recognition</strong> button: faces given to the person, <strong>least sure first</strong>. <strong>✗ Not Laura</strong> forbids it for good, <strong>✓ It's Laura</strong> adds a reference at that exact age. Then run <strong>Prepare the selection</strong> again.</td>
+</tr>
+<tr>
+<td>A photo <strong>without the person</strong> in the choice screen</td>
+<td>Hover it and click <strong>✗ Not Laura</strong> (or key <strong>N</strong> when enlarged): removed from the book <strong>and</strong> never suggested again. Each refusal also teaches the tool to reject look-alike faces.</td>
+</tr>
+<tr>
+<td><strong>Start from scratch</strong></td>
+<td><strong>Check the recognition</strong> screen &gt; <strong>Erase all my corrections</strong>, then <strong>Prepare the selection</strong> (answer "o": the selection is rebuilt entirely).</td>
+</tr>
+<tr>
+<td><strong>Missed</strong> photos</td>
+<td>Same screen, "Maybe Laura" list: one ✓ click.</td>
+</tr>
+<tr>
+<td>Many errors</td>
+<td>Settings &gt; "Face likeness requirement": 0.45 or 0.50.</td>
+</tr>
+<tr>
+<td>Reference photos</td>
+<td>10 to 20 per person, <strong>one per period</strong>, large sharp frontal face, <strong>alone or clearly in front</strong>. Photos with several same-size faces, or unlike the others, are discarded automatically (see the log).</td>
+</tr>
+</tbody>
+</table>
+<h3>Making another person's book (Bo, Hugo…)</h3>
+<p><strong>The drive analysis is done once for the whole family.</strong> It detects faces and computes their fingerprints, but does not yet know who is who. Recognising the book's person happens at "Prepare the selection", by comparing faces with the reference photos.</p>
+<table>
+<thead>
+<tr>
+<th>For a new book</th>
+<th>To do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Settings &gt; "Person of the book": the new name (and close relatives)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Reference photos</strong>: 3 to 10 sharp photos of their face in <code>famille\&lt;Name&gt;</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Prepare the selection</strong>, then the usual steps</td>
+</tr>
+<tr>
+<td>✗</td>
+<td><strong>No need to rerun "Analyse the drive"</strong>: only if you add photos to the drive (only new ones are analysed). The application reminds you if you click it.</td>
+</tr>
+</tbody>
+</table>
+<p>Each person has their own <code>livre_&lt;Name&gt;</code> folder: books never mix.</p>
+<h2>4. The photo-letters poster</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Where</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Settings &gt; Letters poster</td>
+<td>Word, texts above and below, format, designs, colours.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Choose the letter photos</strong></td>
+<td>The browser opens: click one photo per letter (placed by date). The book selection is not changed.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Create the letters poster</strong></td>
+<td>The designs as 300 dpi JPEG + PDF, plus <code>Comparaison_modeles.jpg</code>.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Letter posters</strong> (Open)</td>
+<td>Choose the design for the printer.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Schematic preview:</strong> in Settings &gt; Letters poster, the poster is drawn live next to the settings (format, background, font, outline, colours, one or two lines, texts; coloured letters stand for the photos). The "Designs to make" list just above sets both what is shown and what will be made: one design, or "all" (the 6 as thumbnails). In English, every drop-down list (colours, formats, styles, symbols…) and the photo selection screens in the browser are in English too; the settings file always keeps the same codes.</p>
+<p>To put the poster on the first page of the book: Settings &gt; Letters poster &gt; "Put the poster in the photo book" = <code>premiere-page</code> (or <code>premiere-et-derniere</code>).</p>
+<h2>4b. The photo mosaic</h2>
+<p>A "master" photo (a portrait, for example) rebuilt from hundreds of small album photos: from afar you see the face, up close every memory.</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Where</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Choose the photos</strong></td>
+<td>Enlarge a photo (🔍) then <strong>◆ Master</strong>: it becomes the photo to rebuild (the book selection is unchanged). Or: Settings &gt; Mosaic &gt; "Master photo" &gt; Browse… Without a choice: the cover.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Settings &gt; Mosaic</td>
+<td>Format <strong>A4 to A0</strong>, small photos across (60; 80 to 120 for A0), master blended on top (0.35), "kept" or "all" photos, or a <strong>thumbnail photos folder</strong> (Settings &gt; Mosaic, optional; never changed). Empty = the album's selected photos; filled = the small photos come from that folder; "kept + folder" = both.</td>
+</tr>
+<tr>
+<td>2b</td>
+<td><strong>Mosaic preview</strong> (or "↻ Refresh the preview" in Settings &gt; Mosaic)</td>
+<td>Quick render in a few seconds with the current settings, shown next to the settings: try formats, photo counts and blends before making the poster.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Create the mosaic</strong></td>
+<td><code>livre_&lt;Name&gt;\mosaique</code>: the large JPEG for the printer, a preview, a close-up detail and the list of photos used.</td>
+</tr>
+</tbody>
+</table>
+<p>Advanced settings: face rendering (adaptive = more detail on eyes and mouth), small photos tint, line between photos, gap between identical photos, bleed (3 mm), and <strong>text on the photo</strong> ("|" = new line; position auto/top/bottom/centre/corners, font, colour, size, style shadow/outline/band). Printer files: maximum-quality JPEG with sRGB profile and a PDF at the exact size.</p>
+<p>Quality: 300 dpi up to A2, 200 dpi for A1, 150 dpi for A0 (poster standard). At least 150 photos recommended.</p>
+<h2>5. Maintenance, updating and sharing</h2>
+<p>The <strong>🔧 Maintenance</strong> button (top right) opens a window with <strong>Install / repair</strong> and <strong>Check the tool (tests)</strong> for everyone, and, <strong>for the administrator only</strong>, <strong>Update the tool</strong> (from GitHub) and <strong>Make the zip to share</strong> (a clean copy without your settings, data or GitHub link, in the work folder). Administrator mode is automatic on the author's Git copy, or with an empty <code>admin.txt</code> file next to the application. A shared copy has no GitHub button and cannot update itself.</p>
+<p>Administrator: click <strong>Update the tool</strong>: the application downloads the latest version, then offers to restart. Your settings, selections and books are never touched. Libraries are reinstalled only when their list has changed (faster updates).</p>
+<p>Note: after an update that changes how photos are framed, the first preview takes longer (every crop is redone). The next ones are fast again.</p>
+<h2>6. Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The icon does nothing</td>
+<td>Double-click <code>Lancer_application.bat</code>. If Python is not found, reinstall it with "Add python.exe to PATH" ticked, then run <code>Installer_application.bat</code> again.</td>
+</tr>
+<tr>
+<td>"Libraries to install"</td>
+<td><strong>🔧 Maintenance</strong> &gt; <strong>Install / repair</strong>.</td>
+</tr>
+<tr>
+<td>Photo folder not found</td>
+<td>Plug in the backup drive; if its letter changed (D:, E:…), fix the path in Settings.</td>
+</tr>
+<tr>
+<td>A step seems stuck</td>
+<td>The bar moves as long as it works. For selection screens, finish with <strong>Terminer</strong> in the browser. Otherwise <strong>■ Stop the step</strong>.</td>
+</tr>
+<tr>
+<td>A red error</td>
+<td>Click <strong>journal.txt</strong> (Open) and send that file to Claude.</td>
+</tr>
+</tbody>
+</table></main></body></html>

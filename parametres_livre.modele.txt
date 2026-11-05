@@ -1,0 +1,147 @@
+﻿# ================================================================
+#  PARAMÈTRES DU LIVRE PHOTO
+#  Modifiez ce qui est après le signe =, puis Fichier > Enregistrer.
+#  Les accents sont acceptés. Une ligne commençant par # est ignorée.
+# ================================================================
+
+# Dossier des photos sur le disque de backup (il ne sera jamais modifié)
+PHOTOS =
+
+# Dossier de travail sur le PC (ni sur le disque de backup, ni dans OneDrive)
+SORTIE = C:\AlbumsFamille
+
+# Personne du livre (nom de son dossier de photos de référence)
+PERSONNE =
+
+# Proches à mettre en avant, séparés par des virgules (ex. le prénom de son frère)
+AVEC =
+
+# Date de naissance JJ/MM/AAAA (laisser vide si inconnue)
+NAISSANCE =
+
+# Pays « chez soi » (codes à 2 lettres) : ailleurs = voyage
+PAYS = FR
+
+# Exigence de ressemblance des visages (vide = 0.40) : plus haut = moins de photos sans la personne,
+# mais quelques oublis. Corrigez aussi avec « Vérifier la reconnaissance ».
+SEUIL_VISAGE =
+
+# Format du livre : carre30, carre20, a4-paysage, a4-portrait
+FORMAT = carre30
+
+# Nombre maximum de photos
+MAX = 150
+
+# Nombre de pages visé (vide = mise en page aérée). La mise en page se densifie pour y tenir.
+PAGES =
+
+# Organisation des chapitres : chrono-lieux (par année + nouvelle page à chaque changement de lieu),
+# chrono (par année), themes (anniversaires, voyages, fêtes...), lieux (un chapitre par lieu)
+# Vide = chaque ambiance choisit la sienne (élégant et carnet : chrono-lieux ; tendre, prestige, magazine : themes)
+ORGANISATION =
+
+# Ambiance du livre final : elegant, tendre, carnet, prestige, prestige-compact, prestige-mosaique, magazine,
+# bd (bande dessinée, photos en dessin), bd-photo (bande dessinée, photos telles quelles)
+# ou prestige-mosaique-bd (mosaïque dense façon BD, photos telles quelles)
+# (voir les aperçus de 4_apercu_3_ambiances.bat)
+AMBIANCE =
+
+# Reliure : classique, ou layflat (reliure à plat, autorise les photos panoramiques sur la double page)
+RELIURE = classique
+
+# Couleur des encadrés de légende des ambiances BD : jaune, bleu, bleu-fonce, vert, vert-fonce, rose,
+# orange, rouge, violet, turquoise, blanc, creme, gris (ou un code #RRGGBB)
+BD_COULEUR = jaune
+
+# Langue des textes du livre et de la planche lettres : fr ou en (titres, dates, âges, pays, bulles traduits ;
+# les légendes saisies à la main restent telles quelles)
+LANGUE_LIVRE = fr
+
+# Pied de page : petit texte en bas des pages (vide = aucun), ex. Laura · 2012-2024
+PIED_DE_PAGE =
+# Pages qui le reçoivent : toutes (toutes les pages après la première) ou photos-uniques
+PIED_PAGES = toutes
+
+# Texte de la dernière page de l'album (vide = « À suivre… ») ; un texte long passe à la ligne
+TEXTE_FIN =
+# (texte sur plusieurs lignes : saisissez-le dans l'application, il est gardé dans texte_fin.txt ;
+#  ici, \n = retour à la ligne)
+# Symbole au-dessus du texte de fin : etoiles, coeur, coeurs, fleur, ornement, colombe, aucun
+SYMBOLE_FIN = coeurs
+
+# Texte de la page de titre (laisser vide si aucun)
+DEDICACE =
+
+# ---------------- Planche lettres-photos (7_planche_lettres.bat) ----------------
+# Mot écrit en lettres-photos (vide = le prénom de PERSONNE). Une photo par lettre, de petite à maintenant.
+# Pour choisir les photos vous-même : 7a_choisir_photos_lettres.bat (un clic par photo).
+LETTRES_MOT =
+# Texte libre au-dessus et au-dessous (vides = aucun)
+LETTRES_HAUT = On t'aime
+LETTRES_BAS = De la part de Papa
+# Format : a4-paysage, a3-paysage, 30x20, 40x30, a4-portrait
+LETTRES_FORMAT = a4-paysage
+# Police des lettres : toutes (chaque modèle a la sienne), arial-black, impact, georgia, segoe-black
+LETTRES_POLICE = toutes
+# Taille des lettres en % de la plus grande possible (100 = maximum, 80 = plus d'air)
+LETTRES_TAILLE = 100
+# Creux des lettres (triangle du A, boucle du R, du O) : non = lettres pleines, la photo se voit en entier
+LETTRES_CREUX = non
+# Modèles à fabriquer : tous, ou des numéros (ex. 3 pour seulement le modèle 3, ou 1,3)
+LETTRES_MODELES = tous
+# Couleur du fond (vide = celle de chaque modèle) : noir, blanc, creme, gris-clair, anthracite, bleu-nuit,
+# marine, bleu-ciel, rose, rose-poudre, lavande, vert-sauge, beige, kraft, bordeaux... ou un code #RRGGBB
+LETTRES_FOND =
+# Couleur du contour des lettres (vide = celle du modèle ; aucun = sans contour) : or, argent, blanc, noir...
+LETTRES_CONTOUR =
+# Couleur des textes (vide = automatique : clair sur fond sombre, foncé sur fond clair)
+LETTRES_TEXTE =
+# Photos : couleur, noir-et-blanc ou sepia
+LETTRES_TEINTE = couleur
+# Planche lettres dans le livre photo : non, premiere-page (à la place de la page de titre),
+# ou premiere-et-derniere (aussi juste avant la dernière page)
+LETTRES_DANS_LIVRE = non
+# Modèle de planche utilisé dans le livre (1 à 6, voir Comparaison_modeles.jpg)
+LETTRES_MODELE_LIVRE = 1
+
+# Mosaïque de photos : une photo « master » reconstituée avec les petites photos de l'album
+# Photo master : chemin du fichier (vide = celle marquée « ◆ Master » dans l'écran de choix, sinon la couverture)
+MOSAIQUE_MASTER =
+# Format : a4-portrait, a3-portrait, a2-portrait, a1-portrait, a0-portrait (ou -paysage), 50x70, carre50...
+MOSAIQUE_FORMAT = a3-portrait
+# Nombre de petites photos en largeur (40 à 120 ; plus = image plus nette de loin, photos plus petites)
+MOSAIQUE_COLONNES = 60
+# Part de la photo master fondue par-dessus : 0.25 discret, 0.35 conseillé, 0.50 visage très marqué
+MOSAIQUE_MELANGE = 0.35
+# Petites photos sans dossier de miniatures : gardees (celles du livre) ou toutes (toutes les photos de la personne) ;
+# gardees+dossier ou toutes+dossier = l'album ET le dossier des photos en miniature
+MOSAIQUE_PHOTOS = gardees
+# Dossier des photos en miniature (option ; vide = les photos sélectionnées de l'album ; lu sans être modifié)
+MOSAIQUE_DOSSIER =
+# Résolution : auto (300 dpi jusqu'au A2, 200 en A1, 150 en A0) ou un nombre
+MOSAIQUE_DPI = auto
+# Rendu : adaptatif (conseillé : yeux et bouche plus détaillés), naturel, lumiere (couleurs des photos gardées)
+MOSAIQUE_FONDU = adaptatif
+# Petites photos teintées vers la couleur de leur case : 0 (couleurs d'origine) à 0.7 ; 0.45 conseillé
+MOSAIQUE_TEINTE = 0.45
+# Liseré entre les photos : aucun, blanc-fin, blanc, noir-fin, noir, creme
+MOSAIQUE_JOINT = aucun
+# Une même photo n'est pas reprise à moins de N cases (3 conseillé ; plus = plus de variété apparente)
+MOSAIQUE_ECART = 3
+# Fond perdu demandé par les imprimeurs, en mm de chaque côté (3 en général, 0 = aucun)
+MOSAIQUE_FOND_PERDU = 3
+# Texte par-dessus la photo (vide = aucun ; « | » = nouvelle ligne), ex. Laura | 2003 - 2026
+MOSAIQUE_TEXTE =
+# Position : auto (hors des visages), bas, haut, centre, bas-gauche, bas-droite, haut-gauche, haut-droite
+MOSAIQUE_TEXTE_POSITION = auto
+# Police : georgia, script, texte, arial-black, impact, segoe-black
+MOSAIQUE_TEXTE_POLICE = georgia
+# Couleur : blanc, noir, or, creme... ou #RRGGBB
+MOSAIQUE_TEXTE_COULEUR = blanc
+# Taille : petit, moyen, grand, tres-grand (ou un % de la largeur, ex. 7)
+MOSAIQUE_TEXTE_TAILLE = moyen
+# Style : ombre (lisible partout), contour, bandeau (bande translucide), aucun
+MOSAIQUE_TEXTE_STYLE = ombre
+
+# Langue de l'application : fr ou en (bouton FR / EN en haut à droite de l'application)
+LANGUE = fr

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+journal.txt
+parametres_livre.txt
+texte_fin.txt
+.bibliotheques_installees
+sauvegardes_parametres/
+modifications_locales_*/
+admin.txt
+*.tmp

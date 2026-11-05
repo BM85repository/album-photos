@@ -1,0 +1,27 @@
+﻿ALBUM PHOTOS - livres photo de famille, automatiques
+=====================================================
+
+L'outil parcourt un disque de photos en LECTURE SEULE (vos photos ne sont jamais modifiées, déplacées ni
+supprimées), reconnaît les visages de la famille, choisit les plus belles photos d'une personne et fabrique un
+livre photo prêt pour l'imprimeur (10 styles), une planche lettres-photos et une mosaïque de photos (A4 à A0).
+Tout ce qu'il crée va dans un dossier de travail, par exemple C:\AlbumsFamille.
+
+INSTALLATION (Windows, une seule fois)
+1. Installez Python : https://www.python.org/downloads/
+   Sur le premier écran, cochez « Add python.exe to PATH ». Redémarrez le PC.
+2. Décompressez ce zip (par exemple dans Documents).
+3. Double-cliquez sur Installer_application.bat : bibliothèques (quelques minutes la 1re fois), icône
+   « Album Photos » sur le Bureau, puis l'application s'ouvre.
+4. Bouton « 🔧 Maintenance » > « Vérifier l'outil (tests) » : contrôle que tout fonctionne (1 à 3 min).
+
+PREMIER LIVRE
+1. Onglet Paramètres : dossier des photos, dossier de travail, personne du livre, proches, date de naissance.
+2. « 🔧 Maintenance » > « Installer / réparer » crée un dossier par personne dans <dossier de travail>\famille :
+   mettez-y 10 à 20 photos nettes du visage de chaque personne (une par âge, seule sur la photo).
+3. « Analyser le disque » (plusieurs heures la 1re fois, une seule fois pour toute la famille).
+4. « Préparer la sélection », « Choisir les photos », « Aperçus des ambiances », puis « Livre final ».
+Le guide complet est dans l'onglet Aide (et Guide_application.html / .pdf ; en anglais : Guide_application_EN).
+
+À SAVOIR
+- Les modèles de reconnaissance des visages se téléchargent automatiquement à la 1re analyse (Internet une fois).
+- Cette copie ne se met pas à jour toute seule : demandez une nouvelle version à la personne qui vous l'a donnée.

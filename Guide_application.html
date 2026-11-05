@@ -1,0 +1,616 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide Album Photos</title><style>
+body{font-family:"Segoe UI",system-ui,sans-serif;background:#F6F3EE;color:#2F2B28;margin:0;line-height:1.5}
+main{max-width:960px;margin:0 auto;padding:24px 20px 60px;background:#fff;min-height:100vh}
+h1{font-size:24px;border-bottom:3px solid #C8A96A;padding-bottom:8px}h2{color:#7A5C2E;margin-top:32px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th{background:#2F2B28;color:#fff;text-align:left}
+th,td{padding:7px 10px;border:1px solid #E2DBD0;vertical-align:top}tr:nth-child(even) td{background:#FBF9F5}
+code{background:#F1ECE4;padding:1px 5px;border-radius:4px;font-size:13px}
+@media print{body{background:#fff}main{padding:0}}
+</style></head><body><main><h1>Réf. 20261101-Photos-33 : guide de l'application Album Photos</h1>
+<p>Version du 01/11/2026. L'application regroupe en une seule fenêtre toutes les étapes du livre photo et de la planche lettres-photos. Chaque bouton fait exactement ce que faisait le fichier <code>.bat</code> du même nom, qui reste utilisable.</p>
+<p><strong>Règle de sécurité :</strong> l'application ne fait que <strong>lire</strong> tes photos. Elle ne modifie, ne déplace et ne supprime jamais rien sur le disque de backup. Tout ce qu'elle crée va dans le dossier de travail, par exemple <code>C:\AlbumsFamille</code>.</p>
+<h2>1. Installer l'application (une seule fois)</h2>
+<table>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Ce qu'il faut faire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Python</td>
+<td>Si Python n'est pas encore installé : https://www.python.org/downloads/. Sur le premier écran, coche <strong>« Add python.exe to PATH »</strong>, puis redémarre le PC.</td>
+</tr>
+<tr>
+<td>2. L'outil</td>
+<td>Décompresse le zip reçu (par exemple dans Documents). L'auteur de l'outil, lui, utilise sa copie Git <code>%USERPROFILE%\AlbumPhotos\outils\albums-famille</code>.</td>
+</tr>
+<tr>
+<td>3. Installer</td>
+<td>Dans ce dossier, double-clique sur <strong><code>Installer_application.bat</code></strong>. Il installe les bibliothèques (quelques minutes la première fois), crée l'icône <strong>Album Photos</strong> sur le Bureau et dans le menu Démarrer, puis ouvre l'application.</td>
+</tr>
+<tr>
+<td>4. Ensuite</td>
+<td>Ouvre simplement <strong>Album Photos</strong> depuis le Bureau.</td>
+</tr>
+</tbody>
+</table>
+<p>Si le raccourci n'a pas pu être créé, <code>Lancer_application.bat</code> ouvre aussi l'application.</p>
+<h3>Vérifier l'outil (tests automatiques)</h3>
+<p>Le bouton <strong>🔧 Maintenance</strong> &gt; <strong>Vérifier l'outil (tests)</strong> (ou <code>9_tests_automatiques.bat</code>) lance 39 tests en 1 à 3 minutes, sur un petit disque de <strong>photos de synthèse</strong> créé dans un dossier temporaire : tes photos, tes réglages et tes livres ne sont pas utilisés. Les tests couvrent l'analyse, la sélection, les aperçus, le livre final avec le PowerPoint, la planche lettres, les écrans du navigateur (jeton de sécurité), les propositions, la traduction, les paramètres (lettre sur plusieurs lignes, écriture sûre) et surtout le fait que <strong>les photos d'origine ne sont jamais modifiées</strong>. À la fin, « OK » et « Tous les tests sont passés » s'affichent en vert. Sinon, envoie <code>journal.txt</code> à Claude.</p>
+<h2>2. L'écran</h2>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bandeau du haut</td>
+<td>Le nom de la personne du livre, les dossiers utilisés et la date de la version. À droite : l'étape en cours, une barre d'activité et le bouton <strong>■ Arrêter l'étape</strong>.</td>
+</tr>
+<tr>
+<td>Colonne de gauche</td>
+<td>Les boutons des étapes, dans l'ordre (1 à 5 ; l'installation et la mise à jour sont dans <strong>🔧 Maintenance</strong>) : <strong>boutons bleus ▶</strong>, qui s'éclaircissent au survol. <strong>Le bouton conseillé est vert.</strong> Pendant une étape, les autres sont grisés. En bas, les boutons blancs « Ouvrir » donnent accès aux dossiers.</td>
+</tr>
+<tr>
+<td>Onglet <strong>Journal</strong></td>
+<td>Ce que fait l'étape, en direct. La ligne verte en haut indique la prochaine étape conseillée. Les erreurs sont en rouge.</td>
+</tr>
+<tr>
+<td>Onglet <strong>Paramètres</strong></td>
+<td>Tous les réglages, en trois pages : Photos et personnes, Livre, Planche lettres. <strong>Chaque réglage est dans un cadre blanc</strong> : un titre en gras, la zone à remplir (bordure bleue quand on écrit dedans, flèche ▼ pour une liste de choix) et une aide en gris. Le bouton vert <strong>✔ Enregistrer les paramètres</strong> est en haut.</td>
+</tr>
+<tr>
+<td>Onglet <strong>Aide</strong></td>
+<td>Ce guide. Le bouton « Ouvrir le guide complet » l'affiche dans le navigateur.</td>
+</tr>
+</tbody>
+</table>
+<p>Les paramètres sont enregistrés automatiquement avant chaque étape. Il n'est donc pas nécessaire de cliquer sur « Enregistrer » avant de lancer un bouton.</p>
+<h2>3. Faire le livre pas à pas</h2>
+<table>
+<thead>
+<tr>
+<th>N°</th>
+<th>Bouton</th>
+<th>Ce qui se passe</th>
+<th>Durée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Onglet <strong>Paramètres</strong></td>
+<td>Remplis au minimum : dossier des photos (bouton « Parcourir… »), dossier de travail, personne du livre (Laura), proches (son frère), date de naissance, pays « chez soi » (FR,PH).</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>🔧 Maintenance</strong> &gt; <strong>Installer / réparer</strong></td>
+<td>Vérifie les bibliothèques et crée un dossier de photos de référence par personne.</td>
+<td>2 à 10 min</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Photos de référence</strong> (Ouvrir)</td>
+<td>Mets 3 à 10 photos nettes du visage de chaque personne dans son dossier, à des âges différents, bébé compris.</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Analyser le disque</strong></td>
+<td>Lit toutes les photos : dates, lieux, visages, netteté. On peut l'arrêter et la relancer : le travail déjà fait est conservé.</td>
+<td>plusieurs heures la 1re fois</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Préparer la sélection</strong></td>
+<td>Propose les photos du livre, regroupées en souvenirs. Si une sélection existe déjà, l'application demande s'il faut la refaire. Elle garde une copie de l'ancienne.</td>
+<td>quelques min</td>
+</tr>
+<tr>
+<td>3a</td>
+<td><strong>Choisir les photos</strong></td>
+<td>Le navigateur s'ouvre : un clic garde ou retire une photo, 🔍 l'agrandit. Boutons de filtre : <strong>★ Spéciales</strong> (toutes les photos à rôle), <strong>★ Couverture</strong>, <strong>★ Pleine page</strong>, <strong>✉ Lettres</strong>, <strong>◆ Master</strong>, <strong>Écartées</strong> (doublons, floues, « pas Laura »), avec leur nombre. Termine avec le bouton <strong>Terminer</strong> de la page.</td>
+<td>à ton rythme</td>
+</tr>
+<tr>
+<td>3b</td>
+<td><strong>Réduire la sélection</strong> <em>(facultatif)</em></td>
+<td>Affiche seulement les photos gardées et signale celles à retirer en priorité : doublons, photos floues, faible définition.</td>
+<td>à ton rythme</td>
+</tr>
+<tr>
+<td>3c</td>
+<td><strong>Proposer des améliorations</strong> <em>(facultatif)</em></td>
+<td>Un écran s'ouvre : chaque proposition (remplacer, ajouter, retirer) avec ses photos ; <strong>un clic l'accepte ou la refuse</strong>, « Tout accepter » / « Tout refuser », puis <strong>« Appliquer les choix »</strong> met à jour la sélection (copie de sauvegarde faite). Plus besoin d'Excel. « Revoir les propositions » rouvre cet écran sans tout recalculer.</td>
+<td>quelques min</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Aperçus des 10 ambiances</strong></td>
+<td>Crée un PDF d'aperçu par style dans le dossier du livre.</td>
+<td>10 à 30 min</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Onglet Paramètres &gt; Livre</td>
+<td>Choisis l'<strong>ambiance</strong>. Selon ton besoin, règle aussi le nombre de pages, l'organisation et la dédicace.</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Livre final</strong></td>
+<td>Crée le livre et le dossier pour l'imprimeur : PDF, photos numérotées dans l'ordre, fichier Excel d'instructions, plan de montage.</td>
+<td>10 à 30 min</td>
+</tr>
+<tr>
+<td>5b</td>
+<td><strong>Livre + PowerPoint modifiable</strong> <em>(facultatif)</em></td>
+<td>Même chose, avec en plus un fichier <code>.pptx</code> pour retoucher une planche à la main.</td>
+<td>10 à 30 min</td>
+</tr>
+</tbody>
+</table>
+<h3>Améliorer la reconnaissance des visages</h3>
+<table>
+<thead>
+<tr>
+<th>Problème</th>
+<th>Que faire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Photos retenues <strong>sans la personne</strong></td>
+<td>Bouton <strong>Vérifier la reconnaissance</strong> : les visages attribués à la personne, <strong>les moins sûrs d'abord</strong>. Un clic <strong>✗ Pas Laura</strong> les interdit pour toujours, et <strong>✓ C'est Laura</strong> en fait une référence de plus, à l'âge exact. Ensuite, relance <strong>Préparer la sélection</strong>.</td>
+</tr>
+<tr>
+<td>Une photo <strong>sans la personne</strong> dans l'écran de choix</td>
+<td>Survole la photo et clique sur <strong>✗ Pas Laura</strong> (ou touche <strong>N</strong> en grand) : elle est retirée du livre <strong>et</strong> cette photo ne sera plus jamais proposée. Chaque refus apprend aussi à l'outil à écarter les visages qui lui ressemblent.</td>
+</tr>
+<tr>
+<td><strong>Repartir de zéro</strong></td>
+<td>Écran <strong>Vérifier la reconnaissance</strong> &gt; <strong>Effacer toutes mes corrections</strong>, puis <strong>Préparer la sélection</strong> (répondre « o » : la sélection est entièrement refaite, rien n'est gardé de l'ancienne).</td>
+</tr>
+<tr>
+<td>Photos <strong>oubliées</strong></td>
+<td>Même écran, liste « Peut-être Laura » : un clic ✓ les fait reconnaître.</td>
+</tr>
+<tr>
+<td>Beaucoup d'erreurs</td>
+<td>Paramètres &gt; « Exigence de ressemblance des visages » : 0.45 ou 0.50 (moins de photos sans la personne, quelques oublis).</td>
+</tr>
+<tr>
+<td>Photos de référence</td>
+<td>10 à 20 par personne, <strong>une par période</strong> (bébé, 3 ans, 6 ans… pour un enfant), visage grand, net, de face, <strong>seul ou nettement au premier plan</strong>. Les photos à plusieurs visages de même taille et celles qui ne ressemblent pas aux autres sont écartées automatiquement (voir le journal).</td>
+</tr>
+</tbody>
+</table>
+<p>Depuis le 01/11/2026 : un visage n'est attribué que s'il ressemble nettement plus à la personne qu'aux autres membres de la famille. Les inconnus et les frères et sœurs très ressemblants ne sont plus attribués au hasard. Les petits visages (arrière-plan, foule) doivent ressembler nettement plus, et un visage qui ressemble davantage à un visage que tu as refusé n'est plus attribué.</p>
+<h3>Faire le livre d'une autre personne (Bo, Hugo…)</h3>
+<p><strong>L'analyse du disque se fait une seule fois pour toute la famille.</strong> Elle détecte les visages et calcule leurs empreintes, mais ne sait pas encore qui est qui. La reconnaissance de la personne se fait à « Préparer la sélection », en comparant les visages aux photos de référence.</p>
+<table>
+<thead>
+<tr>
+<th>Pour un nouveau livre</th>
+<th>À faire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Paramètres &gt; « Personne du livre » : le nouveau prénom (et ses proches)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Photos de référence</strong> : 3 à 10 photos nettes de son visage dans <code>famille\&lt;Prénom&gt;</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Préparer la sélection</strong>, puis la suite habituelle (choisir, aperçus, livre final)</td>
+</tr>
+<tr>
+<td>✗</td>
+<td><strong>Pas besoin de relancer « Analyser le disque »</strong> : à refaire seulement si tu ajoutes des photos sur le disque (seules les nouvelles sont analysées). L'application le rappelle si tu cliques dessus.</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque personne a son propre dossier <code>livre_&lt;Prénom&gt;</code> : les livres ne se mélangent pas.</p>
+<h2>4. Faire la planche lettres-photos</h2>
+<table>
+<thead>
+<tr>
+<th>N°</th>
+<th>Où</th>
+<th>Ce qu'il faut faire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Paramètres &gt; Planche lettres</td>
+<td>Mot (vide = le prénom), textes au-dessus et au-dessous, format, modèles, couleurs.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Choisir les photos des lettres</strong></td>
+<td>Le navigateur s'ouvre. Clique sur une photo par lettre : le bandeau L A U R A se remplit, dans l'ordre des dates. Cet écran ne modifie pas la sélection du livre.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Créer la planche lettres</strong></td>
+<td>Crée les modèles en JPEG 300 dpi et en PDF, plus <code>Comparaison_modeles.jpg</code>, qui s'ouvre tout seul.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Planches lettres</strong> (Ouvrir)</td>
+<td>Choisis le modèle à donner à l'imprimeur.</td>
+</tr>
+</tbody>
+</table>
+<p>Les réglages utiles de la planche lettres :</p>
+<table>
+<thead>
+<tr>
+<th>Réglage</th>
+<th>Exemple</th>
+<th>Effet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modèles à fabriquer</td>
+<td><code>3 - impact</code></td>
+<td>Liste au-dessus de l'aperçu schématique : ce qui est montré est ce qui sera fabriqué. « tous » montre et fabrique les 6 modèles pour comparer.</td>
+</tr>
+<tr>
+<td>Couleur du fond</td>
+<td><code>noir</code></td>
+<td>Fond noir pour tous les modèles choisis. Un code <code>#1C2B44</code> est aussi accepté.</td>
+</tr>
+<tr>
+<td>Couleur du contour</td>
+<td><code>or</code></td>
+<td>Contour doré autour des lettres. <code>aucun</code> = pas de contour.</td>
+</tr>
+<tr>
+<td>Couleur des textes</td>
+<td>vide</td>
+<td>Choisie automatiquement : claire sur fond sombre.</td>
+</tr>
+<tr>
+<td>Photos</td>
+<td><code>sepia</code></td>
+<td>Photos en couleur, en noir et blanc ou en sépia.</td>
+</tr>
+<tr>
+<td>Creux des lettres</td>
+<td><code>non</code></td>
+<td>La photo remplit aussi le triangle du A et la boucle du R.</td>
+</tr>
+<tr>
+<td>Mettre la planche dans le livre photo</td>
+<td><code>premiere-page</code></td>
+<td><strong>Optionnel.</strong> La planche remplace la page de titre du livre. <code>premiere-et-derniere</code> la remet aussi juste avant la dernière page. <code>non</code> = livre classique.</td>
+</tr>
+<tr>
+<td>Modèle de planche pour le livre</td>
+<td><code>6</code></td>
+<td>Le modèle (1 à 6) utilisé dans le livre. Il est mis automatiquement au format du livre (30x30 par exemple).</td>
+</tr>
+<tr>
+<td>Taille des lettres</td>
+<td><code>85</code></td>
+<td>Lettres un peu plus petites, avec plus d'air autour.</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque photo est cadrée pour que le visage de Laura tombe sur une partie pleine de la lettre.</p>
+<p><strong>Aperçu schématique :</strong> dans Paramètres &gt; Planche lettres, la planche est dessinée en direct à droite des réglages (format, fond, police, contour, couleurs, une ou deux lignes, textes ; les lettres colorées représentent les photos). La liste « Modèles à fabriquer », juste au-dessus, choisit à la fois ce qui est montré et ce qui sera fabriqué : un modèle, ou « tous » (les 6 en vignettes).</p>
+<p><strong>Langue :</strong> en anglais, toutes les listes de choix (couleurs, formats, ambiances, symboles…) et les écrans de choix des photos dans le navigateur sont aussi en anglais. Le fichier de paramètres garde toujours les mêmes codes, quelle que soit la langue.</p>
+<p>Pour la mettre dans le livre : choisis <code>premiere-page</code> dans « Mettre la planche dans le livre photo », puis relance <strong>Aperçus</strong> ou <strong>Livre final</strong>. La planche est fabriquée au format du livre et placée en première page.</p>
+<h3>Options du livre (Paramètres &gt; Livre)</h3>
+<table>
+<thead>
+<tr>
+<th>Réglage</th>
+<th>Exemple</th>
+<th>Effet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Langue du livre</td>
+<td><code>en</code></td>
+<td>Titres, dates, âges, pays, bulles et pages fixes en anglais. Les légendes et titres saisis à la main restent tels quels.</td>
+</tr>
+<tr>
+<td>Pied de page</td>
+<td><code>Laura · 2012-2024</code></td>
+<td>Petit texte en bas des pages, côté extérieur.</td>
+</tr>
+<tr>
+<td>Pages avec le pied de page</td>
+<td><code>photos-uniques</code></td>
+<td><code>toutes</code> = toutes les pages après la première ; <code>photos-uniques</code> = seulement les pages à une seule photo.</td>
+</tr>
+<tr>
+<td>Texte de la fin de l'album</td>
+<td>une lettre sur plusieurs paragraphes</td>
+<td>Grande zone de texte dans l'application, enregistrée dans <code>texte_fin.txt</code>. Les retours à la ligne et les paragraphes sont gardés, la taille s'adapte pour que tout tienne (jamais tronqué), et une 1re ligne courte (« Ma chérie, ») sert d'en-tête. Un ❤️ devient un cœur dessiné.</td>
+</tr>
+<tr>
+<td>Symbole au-dessus du texte de fin</td>
+<td><code>coeurs</code></td>
+<td>coeurs, coeur, fleur, ornement, colombe, etoiles ou aucun : dessinés dans l'application, un clic sur un dessin le choisit.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aperçus :</strong> le bouton « Aperçus des ambiances » ouvre une fenêtre où tu <strong>coches les ambiances à faire ou refaire</strong>. Les autres aperçus restent tels quels. Dans les aperçus seulement : une étiquette rouge signale un visage déjà coupé sur la photo d'origine (aucun recadrage ne peut le rattraper : remplace la photo si possible). Elle est aussi listée en dernière page.</p>
+<p><strong>Langue de l'application :</strong> le bouton <strong>🌐 EN / FR</strong>, en haut à droite, passe toute l'application en anglais ou en français. Les messages détaillés du journal restent en français.</p>
+<h2>4 bis. La mosaïque de photos</h2>
+<p>Une photo « master » (un portrait, par exemple) reconstituée avec des centaines de petites photos de l'album : de loin on voit le visage, de près chaque souvenir.</p>
+<table>
+<thead>
+<tr>
+<th>N°</th>
+<th>Où</th>
+<th>Que faire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Choisir les photos</strong></td>
+<td>Ouvre la photo en grand (🔍) puis <strong>◆ Master</strong> : elle devient la photo à reconstituer (la sélection du livre ne change pas). Ou : Paramètres &gt; Mosaïque &gt; « Photo master » &gt; Parcourir… (n'importe quelle photo). Sans choix : la couverture.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Paramètres &gt; Mosaïque</td>
+<td>Format <strong>A4 à A0</strong>, nombre de petites photos en largeur (60 ; 80 à 120 en A0), part du visage fondu par-dessus (0.35), petites photos « gardées » ou « toutes » (plus de variété), ou un <strong>dossier des photos en miniature</strong> (Paramètres &gt; Mosaïque, option ; lu sans être modifié). Vide = les photos sélectionnées de l'album ; rempli = les miniatures viennent de ce dossier ; « gardées + dossier » = les deux.</td>
+</tr>
+<tr>
+<td>2 bis</td>
+<td><strong>Aperçu de la mosaïque</strong> (ou « ↻ Actualiser l'aperçu » dans Paramètres &gt; Mosaïque)</td>
+<td>Rendu rapide en quelques secondes avec les réglages actuels, affiché à droite des réglages : essaie plusieurs formats, nombres de photos et mélanges avant de fabriquer le poster.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Créer la mosaïque</strong></td>
+<td><code>livre_&lt;Prénom&gt;\mosaique</code> : le grand JPEG pour l'imprimeur, un aperçu, un détail vu de près et la liste des photos utilisées.</td>
+</tr>
+</tbody>
+</table>
+<h3>Réglages avancés (rendu professionnel)</h3>
+<table>
+<thead>
+<tr>
+<th>Réglage</th>
+<th>Conseil</th>
+<th>Effet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rendu du visage</td>
+<td>adaptatif</td>
+<td>Plus de photo master sur les détails (yeux, bouche, contours), moins dans les aplats : visage net de loin, souvenirs visibles de près. « lumière » : les petites photos gardent leurs vraies couleurs.</td>
+</tr>
+<tr>
+<td>Teinte des petites photos</td>
+<td>0.45</td>
+<td>0 = couleurs d'origine ; plus haut = harmonie plus forte avec la photo master.</td>
+</tr>
+<tr>
+<td>Liseré entre les photos</td>
+<td>aucun ou blanc-fin</td>
+<td>Effet « carreaux » discret.</td>
+</tr>
+<tr>
+<td>Écart entre deux mêmes photos</td>
+<td>3</td>
+<td>Une photo n'est jamais reprise à moins de 3 cases.</td>
+</tr>
+<tr>
+<td>Fond perdu</td>
+<td>3 mm</td>
+<td>Marge rognée par l'imprimeur ; le texte reste toujours à l'intérieur.</td>
+</tr>
+<tr>
+<td>Texte sur la photo</td>
+<td><code>Laura \| 2003 - 2026</code></td>
+<td>« | » = nouvelle ligne. Position (auto = hors du visage, ou haut, bas, centre, un coin), police, couleur, taille, style (ombre, contour, bandeau translucide).</td>
+</tr>
+</tbody>
+</table>
+<p>Fichiers pour l'imprimeur : JPEG qualité maximale avec profil couleur sRGB, et PDF au format exact (fond perdu compris).</p>
+<p>Qualité : 300 dpi jusqu'au A2, 200 dpi en A1, 150 dpi en A0 (norme des posters, regardés à plus d'un mètre). Chaque petite photo est fabriquée à partir de l'original, donc nette. Au moins 150 photos conseillées ; sinon les mêmes reviennent souvent (le journal le signale).</p>
+<h2>5. Ambiances BD : les bulles</h2>
+<p>Dans les ambiances <code>bd</code>, <code>bd-photo</code> et <code>prestige-mosaique-bd</code>, la bulle (« Joyeux anniversaire ! ») se place là où il n'y a pas de visage : en haut à droite, en haut à gauche, au centre ou en bas. Sa pointe est tournée vers la personne. Si aucun endroit libre n'existe, la case n'a pas de bulle : une bulle ne cache jamais un visage. L'encadré jaune (date, lieu, titre) se met dans le coin de la case où il ne cache aucun visage. Au besoin, il devient plus étroit ou plus large, et sa police descend jusqu'à 9 pt. Seules les fêtes ont une bulle (anniversaire, Noël, nouvel an, naissance, mariage, baptême, vacances, fête) ; il n'y a plus de bulle « En route ! » sur les voyages.</p>
+<p><strong>Couleur des encadrés</strong> : Paramètres &gt; Livre &gt; « Couleur des encadrés de légende (ambiances BD) ». Les choix sont jaune (par défaut), bleu, bleu-fonce, vert, vert-fonce, rose, orange, rouge, violet, turquoise, blanc, creme, gris, ou un code <code>#RRGGBB</code>. Le texte passe en blanc sur les couleurs foncées.</p>
+<p><strong>Visages coupés</strong> : le recadrage protège la tête entière (cheveux et menton). Si une photo ne peut pas être recadrée sans couper quelqu'un, elle est montrée entière dans sa case. Quand une photo est réduite (qualité insuffisante), l'encadré se place dans l'espace libre à côté d'elle.</p>
+<h2>6. Maintenance, mise à jour et partage</h2>
+<p>Le bouton <strong>🔧 Maintenance</strong> (en haut à droite) ouvre une fenêtre :</p>
+<table>
+<thead>
+<tr>
+<th>Bouton</th>
+<th>Pour qui</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Installer / réparer</td>
+<td>tout le monde</td>
+<td>Bibliothèques et dossiers de photos de référence</td>
+</tr>
+<tr>
+<td>Vérifier l'outil (tests)</td>
+<td>tout le monde</td>
+<td>Tests automatiques sur des photos de synthèse</td>
+</tr>
+<tr>
+<td>Mettre à jour l'outil</td>
+<td><strong>administrateur seulement</strong></td>
+<td>Dernière version depuis GitHub ; paramètres, sélections et livres jamais touchés</td>
+</tr>
+<tr>
+<td>Fabriquer le zip à partager</td>
+<td><strong>administrateur seulement</strong></td>
+<td><code>AlbumPhotos_partage_AAAAMMJJ.zip</code> dans le dossier de travail : sans tes réglages, ta lettre, ta base de visages, tes photos ni le lien vers ton dépôt GitHub</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mode administrateur</strong> : automatique sur ta copie Git (<code>%USERPROFILE%\AlbumPhotos</code>), ou en créant un fichier vide <code>admin.txt</code> à côté de l'application. Une copie partagée n'a aucun bouton lié à GitHub, et sa mise à jour est désactivée : pour une nouvelle version, refais un zip et renvoie-le.</p>
+<h2>7. Où sont les fichiers</h2>
+<table>
+<thead>
+<tr>
+<th>Fichier</th>
+<th>Emplacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Réglages</td>
+<td><code>parametres_livre.txt</code>, dans le dossier de l'outil</td>
+</tr>
+<tr>
+<td>Livre, aperçus, sélection</td>
+<td><code>C:\AlbumsFamille\livre_Laura\</code></td>
+</tr>
+<tr>
+<td>Dossier pour l'imprimeur</td>
+<td><code>C:\AlbumsFamille\livre_Laura\imprimeur_&lt;ambiance&gt;\</code></td>
+</tr>
+<tr>
+<td>Planches lettres</td>
+<td><code>C:\AlbumsFamille\livre_Laura\lettres\</code></td>
+</tr>
+<tr>
+<td>Photos de référence</td>
+<td><code>C:\AlbumsFamille\famille\&lt;Prénom&gt;\</code></td>
+</tr>
+<tr>
+<td>Journal de toutes les étapes</td>
+<td><code>journal.txt</code>, dans le dossier de l'outil</td>
+</tr>
+</tbody>
+</table>
+<h2>8. En cas de problème</h2>
+<table>
+<thead>
+<tr>
+<th>Problème</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L'icône ne fait rien</td>
+<td>Double-clique sur <code>Lancer_application.bat</code>. Si Python est introuvable, réinstalle-le en cochant « Add python.exe to PATH », puis relance <code>Installer_application.bat</code>.</td>
+</tr>
+<tr>
+<td>« Bibliothèques à installer »</td>
+<td><strong>🔧 Maintenance</strong> &gt; <strong>Installer / réparer</strong>.</td>
+</tr>
+<tr>
+<td>Le dossier de photos est introuvable</td>
+<td>Branche le disque de backup. Si sa lettre a changé (D:, E:…), corrige le chemin dans Paramètres. Rien ne sera recalculé.</td>
+</tr>
+<tr>
+<td>Une étape semble bloquée</td>
+<td>La barre bouge tant que l'étape travaille. Pour les écrans de choix, termine avec <strong>Terminer</strong> dans le navigateur. Sinon, utilise <strong>■ Arrêter l'étape</strong>.</td>
+</tr>
+<tr>
+<td>« … est ouvert dans Excel »</td>
+<td>Ferme le fichier dans Excel, puis recommence.</td>
+</tr>
+<tr>
+<td>Une erreur en rouge</td>
+<td>Clique sur <strong>journal.txt</strong> (Ouvrir) et envoie ce fichier à Claude.</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Correspondance avec les fichiers .bat</h2>
+<table>
+<thead>
+<tr>
+<th>Bouton</th>
+<th>Fichier .bat équivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mettre à jour l'outil (administrateur)</td>
+<td><code>0_mettre_a_jour.bat</code></td>
+</tr>
+<tr>
+<td>Installer / réparer</td>
+<td><code>1_installer.bat</code></td>
+</tr>
+<tr>
+<td>Analyser le disque</td>
+<td><code>2_analyser_disque.bat</code></td>
+</tr>
+<tr>
+<td>Préparer la sélection</td>
+<td><code>3_preparer_selection.bat</code></td>
+</tr>
+<tr>
+<td>Choisir les photos</td>
+<td><code>3a_choisir_photos.bat</code></td>
+</tr>
+<tr>
+<td>Proposer des améliorations</td>
+<td><code>3b_proposer_ameliorations.bat</code></td>
+</tr>
+<tr>
+<td>Appliquer les propositions</td>
+<td><code>3c_appliquer_propositions.bat</code></td>
+</tr>
+<tr>
+<td>Réduire la sélection</td>
+<td><code>3d_reduire_selection.bat</code></td>
+</tr>
+<tr>
+<td>Aperçus des 10 ambiances</td>
+<td><code>4_apercu_3_ambiances.bat</code></td>
+</tr>
+<tr>
+<td>Livre final</td>
+<td><code>5_livre_final.bat</code></td>
+</tr>
+<tr>
+<td>Livre + PowerPoint modifiable</td>
+<td><code>6_livre_powerpoint.bat</code></td>
+</tr>
+<tr>
+<td>Choisir les photos des lettres</td>
+<td><code>7a_choisir_photos_lettres.bat</code></td>
+</tr>
+<tr>
+<td>Créer la planche lettres</td>
+<td><code>7_planche_lettres.bat</code></td>
+</tr>
+<tr>
+<td>Aperçu de la mosaïque</td>
+<td><code>8a_apercu_mosaique.bat</code></td>
+</tr>
+<tr>
+<td>Créer la mosaïque</td>
+<td><code>8_mosaique_photos.bat</code></td>
+</tr>
+<tr>
+<td>Vérifier l'outil (tests)</td>
+<td><code>9_tests_automatiques.bat</code></td>
+</tr>
+</tbody>
+</table></main></body></html>
