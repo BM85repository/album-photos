@@ -1,0 +1,52 @@
+# Builds the TV Remote Android app and publishes the APK as a GitHub release (direct download).
+name: TV Remote APK
+
+on:
+  push:
+    paths:
+      - "tv-remote/**"
+      - ".github/workflows/tv-remote.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tv-remote-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tv-remote
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build APK
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace assembleRelease
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="$(tr -d ' \r\n' < VERSION).${{ github.run_number }}"
+          apk=app/build/outputs/apk/release/app-release.apk
+          cp "$apk" "TVRemote-$v.apk"
+          cp "$apk" TVRemote.apk
+          notes="Install on the phone: open this page on the Samsung, tap the .apk, allow 'Install unknown apps' for the browser. Branch: ${{ github.ref_name }}"
+          gh release create "tv-remote-v$v" "TVRemote-$v.apk" --title "TV Remote $v" --notes "$notes" --target "${{ github.sha }}" --latest=false
+          gh release delete tv-remote-latest --yes --cleanup-tag || true
+          gh release create tv-remote-latest TVRemote.apk --title "TV Remote (latest build)" --notes "$notes" --target "${{ github.sha }}" --latest=false --prerelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TVRemote-apk
+          path: tv-remote/app/build/outputs/apk/release/app-release.apk

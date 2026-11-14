@@ -44,7 +44,7 @@ jobs:
           tag="${{ steps.version.outputs.tag }}"
           mkdir -p paquet/AlbumPhotos
           git archive HEAD | tar -x -C paquet/AlbumPhotos
-          rm -rf paquet/AlbumPhotos/.github paquet/AlbumPhotos/.gitignore
+          rm -rf paquet/AlbumPhotos/.github paquet/AlbumPhotos/.gitignore paquet/AlbumPhotos/tv-remote
           (cd paquet && zip -qr "../AlbumPhotos_${tag}.zip" AlbumPhotos)
           gh release create "$tag" "AlbumPhotos_${tag}.zip" --title "Album Photos ${tag}" --notes-file NOTES_VERSION.md
         env:
